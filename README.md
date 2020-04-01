@@ -1,3 +1,5 @@
+I developed this app following this tutorial: https://www.scaledrone.com/blog/tutorial-build-a-reactjs-chat-app/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
