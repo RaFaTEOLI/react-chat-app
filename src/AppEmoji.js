@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import Messages from './Messages';
 import Input from './Input';
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 function randomName() {
   const adjectives = ["autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green", "long", "late", "lingering", "bold", "little", "morning", "muddy", "old", "red", "rough", "still", "small", "sparkling", "throbbing", "shy", "wandering", "withered", "wild", "black", "young", "holy", "solitary", "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine", "polished", "ancient", "purple", "lively", "nameless"];
@@ -18,7 +20,7 @@ function randomColor() {
 export default class App extends Component {
   constructor() {
     super();
-    this.drone = new window.Scaledrone("YOUR_CHANNEL_ID", {
+    this.drone = new window.Scaledrone("hWlRObb8H2fqHAdw", {
       data: this.state.member
     });
     this.drone.on('open', error => {
@@ -37,6 +39,8 @@ export default class App extends Component {
       messages.push({member, text: data});
       this.setState({messages});
     });
+
+    this.handleTextFromChild = this.handleTextFromChild.bind(this);
   }
   // Testing
   // state = {
@@ -68,6 +72,12 @@ export default class App extends Component {
       username: randomName(),
       color: randomColor()
     },
+    textInParent: '',
+  }
+  handleTextFromChild(data) {
+    this.setState({
+      textInParent: data
+    });
   }
   onSendMessage = (message) => {
     this.drone.publish({
@@ -75,17 +85,26 @@ export default class App extends Component {
       message
     });
   }
+  addEmoji = (emoji) => {
+    console.log(emoji.native);
+    this.setState({
+      textInParent: this.state.textInParent + emoji.native
+    });
+  }
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <h1>React Chat App</h1>
+          <h1>AntsBox</h1>
         </div>
         <Messages
           messages={this.state.messages}
           currentMember={this.state.member}
         />
+        <Picker title='Escolha o emoji' onSelect={this.addEmoji} style={{ position: 'absolute', bottom: '80px', left: '20px' }} />
         <Input
+          propMethodToPass={this.handleTextFromChild}
+          propToPass={this.state.textInParent}
           onSendMessage={this.onSendMessage}
         />
     </div>
