@@ -2,6 +2,18 @@ React Chat App with emoji picker.
 
 Using Scaledrone for channel messages and using emoji-mart to create the emoji tab.
 
+App Images:
+
+![alt text](https://raw.githubusercontent.com/RaFaTEOLI/react-chat-app/master/project-imgs/chat.png)
+
+![alt text](https://raw.githubusercontent.com/RaFaTEOLI/react-chat-app/master/project-imgs/chat1.png)
+
+![alt text](https://raw.githubusercontent.com/RaFaTEOLI/react-chat-app/master/project-imgs/chat2.png)
+
+![alt text](https://raw.githubusercontent.com/RaFaTEOLI/react-chat-app/master/project-imgs/chat3.png)
+
+![alt text](https://raw.githubusercontent.com/RaFaTEOLI/react-chat-app/master/project-imgs/chat4.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
